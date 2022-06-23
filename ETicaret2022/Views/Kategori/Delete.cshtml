@@ -1,0 +1,32 @@
+﻿@model ETicaret2022.Models.Kategori
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Kategori Sil</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.KategoriAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategoriAdi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Sil" class="btn btn-danger" />
+    @Html.ActionLink("Listeye Dön", "Index", null, new { @class = "btn btn-default" })
+</div>
+    }
+</div>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ETicaret2022.Models.Siparis>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h2>Sipariş Listesi</h2>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TCKimlikNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </th>
+        <th>Ürün Adet</th>
+        <th>Toplam Tutar</th>
+        <th>Sipariş Detay</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Soyad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Adres)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefon)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TCKimlikNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tarih)
+    </td>
+
+    <td>
+        @item.SiparisDetay.Sum(x => x.Adet)
+    </td>
+    <td>
+        @item.SiparisDetay.Sum(x => x.ToplamTutar)
+    </td>
+
+    <td>
+        @Html.ActionLink("Detay", "SiparisDetay", new { id = item.SiparisID }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+    }   
+
+</table>
+
+

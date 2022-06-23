@@ -1,0 +1,49 @@
+﻿
+@using ETicaret2022.Models
+@model List<Urunler>
+@{
+    ViewBag.Title = ViewBag.KategoriAd;
+
+    List<Kategori> kategoriliste = ViewBag.Kategoriler as List<Kategori>; 
+
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET MVC E-ticaret Projesi</h1>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Kategoriler</h2>
+        <ul>
+            @foreach (var item in kategoriliste)
+            {
+                <li>
+                    @Html.ActionLink(item.KategoriAdi, "Kategori", new { id = item.KategoriID })
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <h2>Ürünler</h2>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6" style="border:1px solid #000000">
+                    <h5>@item.UrunAdi</h5>
+                    <img src="~/Resim/@(item.UrunID).jpg" width="100" height="100" />
+                    <p>
+                        <a href="@Url.Action("Urun","Home",new {id=item.UrunID})" class="btn btn-default">
+                            Ürün Detay
+                        </a>
+                        <span style="color:red;float:right;">@item.UrunFiyati</span>
+                    </p>
+                </div>
+
+            }
+        </div>
+
+    </div>
+
+</div>
